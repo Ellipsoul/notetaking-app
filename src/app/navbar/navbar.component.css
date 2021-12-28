@@ -1,0 +1,13 @@
+@import-normalize;
+@tailwind base;
+@tailwind components;
+
+@layer components {
+  /* Wrapping container for navigation bar */
+  .navbar-container {
+    @apply bg-amber-50 dark:bg-gray-900;
+    @apply flex flex-row h-28 shadow-lg items-center justify-between;
+    @apply drop-shadow-lg;
+    @apply px-12;
+  }
+}

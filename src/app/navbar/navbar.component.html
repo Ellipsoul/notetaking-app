@@ -1,0 +1,9 @@
+<!-- Top-bar represented by material toolbar  -->
+<!-- Don't ask me why this has to be in-line. Doesn't work otherwise... -->
+<div [ngClass]="[applyTheme(), 'navbar-container']">
+  <div>Hi</div>
+  <div>{{ theme }}</div>
+  <button mat-raised-button color="primary" (click)="toggleTheme()">
+    Toggle Theme
+  </button>
+</div>
