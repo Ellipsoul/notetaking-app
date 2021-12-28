@@ -16,20 +16,13 @@ export class ThemeService {
   // Retrieve theme, or default to light
   getTheme(): string {
     const theme = localStorage.getItem('theme');
-    if (theme === null) {
-      this.setTheme('dark');
-      return 'dark';
-    } else {
-      return theme;
-    }
+    if (theme !== null) return theme;
+
+    this.setTheme('light');
+    return 'light';
   }
 
   toggleTheme(): void {
-    const theme = this.getTheme();
-    if (theme === 'light') {
-      this.setTheme('dark');
-    } else {
-      this.setTheme('light');
-    }
+    this.getTheme() === 'light' ? this.setTheme('dark') : this.setTheme('light');
   }
 }
