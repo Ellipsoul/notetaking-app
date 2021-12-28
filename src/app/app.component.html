@@ -1,5 +1,6 @@
-<div [ngClass]="['main-container']">
-  <app-navbar></app-navbar>
+<div [ngClass]="[theme, 'w-full my-0 mx-auto flex flex-col']">
+  <app-navbar (themeEvent)="themeEventHandler($event)"></app-navbar>
+  <app-main-content></app-main-content>
 </div>
 
 <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { ThemeService } from '../theme.service';
 
@@ -8,21 +8,19 @@ import { ThemeService } from '../theme.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  theme:string;
+  @Output() themeEvent = new EventEmitter<string>();
+
+  currentTheme:string;
 
   constructor(private themeService: ThemeService) {
-    this.theme = this.applyTheme();
+    this.currentTheme = this.themeService.getTheme();
   }
 
   ngOnInit(): void {}
 
-  // Theme management
-  applyTheme() {
-    return this.themeService.getTheme();
-  }
-
   toggleTheme():void {
     this.themeService.toggleTheme();
-    this.theme = this.applyTheme();
+    this.currentTheme = this.themeService.getTheme();
+    this.themeEvent.emit(this.currentTheme);
   }
 }

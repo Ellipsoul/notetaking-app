@@ -11,8 +11,4 @@
 }
 
 @layer components {
-  .main-container {
-    @apply w-full my-0 mx-auto;
-    @apply flex flex-col;
-  }
 }

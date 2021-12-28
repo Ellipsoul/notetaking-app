@@ -9,7 +9,7 @@ export class ThemeService {
   }
 
   // Managing theme in local storage
-  setTheme(theme: string): void {
+  private setTheme(theme: string): void {
     localStorage.setItem('theme', theme);
   }
 
@@ -31,13 +31,5 @@ export class ThemeService {
     } else {
       this.setTheme('light');
     }
-  }
-
-  isDarkTheme(): boolean {
-    return this.getTheme() === 'dark';
-  }
-
-  isLightTheme(): boolean {
-    return this.getTheme() === 'light';
   }
 }

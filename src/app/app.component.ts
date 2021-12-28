@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
 
+import { ThemeService } from './theme.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Notetaking App';
+  title: string = 'Notetaking App';
+  public theme: string;
 
-  constructor() { }
+  themeEventHandler($event: any) {
+    this.theme = $event;
+  }
+
+  constructor(private themeService: ThemeService) {
+    this.theme = this.themeService.getTheme();
+  }
 }
