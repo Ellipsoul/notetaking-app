@@ -18,7 +18,14 @@
     "require-jsdoc": 0,
     "new-cap": 0,
     "object-curly-spacing": 0,
-    "quote-props": 0
+    "quote-props": 0,
+    "max-len": [
+      "error",
+      {
+        "code": 100,
+        "ignoreUrls": true
+      }
+    ]
   }
 }
 

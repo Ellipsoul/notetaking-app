@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import firebase from 'firebase/compat/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import { ThemeService } from '../theme.service';
 
@@ -12,15 +14,27 @@ export class NavbarComponent implements OnInit {
 
   currentTheme:string;
 
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, public afAuth: AngularFireAuth) {
     this.currentTheme = this.themeService.getTheme();
   }
-
-  ngOnInit(): void {}
 
   toggleTheme():void {
     this.themeService.toggleTheme();
     this.currentTheme = this.themeService.getTheme();
     this.themeEvent.emit(this.currentTheme);
+  }
+
+
+  ngOnInit(): void {
+  }
+
+  signIn() {
+    // Create a google authentication sign in with popup
+    const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    this.afAuth.signInWithPopup(googleAuthProvider);
+  }
+
+  signOut() {
+    this.afAuth.signOut();
   }
 }
