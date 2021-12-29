@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     const isAuthenticated = user ? true : false;
 
     if (!isAuthenticated) {
-      this.snackbar.open('Please sign in to view your notes!', '', {
+      this.snackbar.open('Please sign in to view your notes!', 'Dismiss', {
         duration: 3000,
         verticalPosition: 'top',
       });

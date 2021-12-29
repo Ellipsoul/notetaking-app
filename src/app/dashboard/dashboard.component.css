@@ -3,4 +3,7 @@
 @tailwind components;
 
 @layer components {
+  :host {
+    @apply grow flex;
+  }
 }

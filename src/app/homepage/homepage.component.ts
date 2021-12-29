@@ -24,12 +24,12 @@ export class HomepageComponent implements OnInit {
     this.afAuth.signInWithPopup(googleAuthProvider)
         .then(() => {
           this.router.navigate(['/dashboard']);
-          this.snackBar.open('Signed in!', 'Close', {
+          this.snackBar.open('Signed in!', 'Dismiss', {
             duration: 3000,
           });
         })
         .catch((error) => {
-          this.snackBar.open('Sign in failed!', 'Close', {
+          this.snackBar.open('Sign in failed!', 'Dismiss', {
             duration: 3000,
           });
         });
@@ -37,7 +37,7 @@ export class HomepageComponent implements OnInit {
 
   signOut() {
     this.afAuth.signOut().then(() => {
-      this.snackBar.open('Signed out!', 'Close', {
+      this.snackBar.open('Signed out!', 'Dismiss', {
         duration: 3000,
       });
     });

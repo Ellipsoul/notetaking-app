@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   signOut() {
     this.afAuth.signOut().then(() => {
       this.router.navigate(['/home']);
-      this.snackBar.open('Signed out!', 'Close', {
+      this.snackBar.open('Signed out!', 'Dismiss', {
         duration: 3000,
       });
     });
