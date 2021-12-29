@@ -4,7 +4,6 @@
   ngClass="flex flex-row items-center justify-between
   h-28 px-12 bg-amber-50 dark:bg-gray-800 drop-shadow-lg"
 >
-  <div ngClass="text-black dark:text-white">{{ currentTheme }}</div>
   <button mat-raised-button color="accent" (click)="toggleTheme()">
     Toggle Theme
   </button>
@@ -13,23 +12,5 @@
   <button mat-raised-button color="accent" routerLink="/about">About</button>
   <button mat-raised-button color="warn" routerLink="/dashboard">
     Dashboard
-  </button>
-
-  <button
-    mat-raised-button
-    color="primary"
-    *ngIf="(afAuth.authState | async) === null"
-    (click)="signIn()"
-  >
-    Sign In
-  </button>
-
-  <button
-    mat-raised-button
-    color="primary"
-    *ngIf="afAuth.authState | async"
-    (click)="signOut()"
-  >
-    Sign Out
   </button>
 </div>

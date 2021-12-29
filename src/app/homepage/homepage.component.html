@@ -2,5 +2,23 @@
   ngClass="bg-amber-50 dark:bg-slate-600
   flex flex-row text-black dark:text-white"
 >
-  This is the homepage
+  <div>This is the home page</div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="(afAuth.authState | async) === null"
+    (click)="signInWithGoogle()"
+  >
+    Sign In
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="afAuth.authState | async"
+    (click)="signOut()"
+  >
+    Sign Out
+  </button>
 </div>

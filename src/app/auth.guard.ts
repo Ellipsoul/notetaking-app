@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(private afAuth: AngularFireAuth, private snackbar: MatSnackBar) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Promise<boolean | UrlTree> {
@@ -14,7 +15,10 @@ export class AuthGuard implements CanActivate {
     const isAuthenticated = user ? true : false;
 
     if (!isAuthenticated) {
-      alert('You must be logged in to view this page.');
+      this.snackbar.open('Please sign in to view your notes!', '', {
+        duration: 3000,
+        verticalPosition: 'top',
+      });
     }
     return isAuthenticated;
   }
