@@ -23,6 +23,7 @@ export class ThemeService {
   }
 
   toggleTheme(): void {
-    this.getTheme() === 'light' ? this.setTheme('dark') : this.setTheme('light');
+    this.getTheme() === 'light' ?
+      this.setTheme('dark') : this.setTheme('light');
   }
 }
