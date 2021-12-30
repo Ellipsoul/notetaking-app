@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '../authguard/auth.guard';
 
-import { HomepageComponent } from './homepage/homepage.component';
-import { AboutComponent } from './about/about.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomepageComponent } from '../components/homepage/homepage.component';
+import { AboutComponent } from '../components/about/about.component';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
