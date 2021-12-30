@@ -17,11 +17,4 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  signOut() {
-    this.afAuth.signOut().then(() => {
-      this.router.navigate(['/home']);
-      this.toaster.info('Signed Out!', 'Info');
-    });
-  }
 }

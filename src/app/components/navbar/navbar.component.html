@@ -14,8 +14,26 @@
     mat-raised-button
     color="warn"
     routerLink="/dashboard"
-    (click)="handleClick()"
+    (click)="checkAuthentication()"
   >
     Dashboard
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="(afAuth.authState | async) === null"
+    (click)="signInWithGoogle()"
+  >
+    Sign In with Google
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="afAuth.authState | async"
+    (click)="signOut()"
+  >
+    Sign Out
   </button>
 </div>

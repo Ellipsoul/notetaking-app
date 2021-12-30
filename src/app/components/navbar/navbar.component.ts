@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth/';
+import firebase from 'firebase/compat/app';
 
 import { ThemeService } from '../../services/theme.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +18,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private themeService: ThemeService,
-    private afAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth,
+    public router: Router,
     private toaster: ToastrService) {
     this.currentTheme = this.themeService.getTheme();
   }
@@ -30,7 +33,31 @@ export class NavbarComponent implements OnInit {
     this.themeEvent.emit(this.currentTheme);
   }
 
-  async handleClick():Promise<void> {
+  signInWithGoogle() {
+    // Create a google authentication sign in with popup
+    const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    this.afAuth.signInWithPopup(googleAuthProvider)
+        .then(() => {
+          this.router.navigate(['/dashboard']);
+          this.toaster.success('Signed In!', 'Success');
+        })
+        .catch((error) => {
+          this.toaster.error('Failed to sign in!', 'Error');
+          console.log(error);
+        });
+  }
+
+  signOut() {
+    this.afAuth.signOut().then(() => {
+      this.toaster.info('Signed Out!', 'Info');
+    }).catch((error) => {
+      this.toaster.error('Failed to sign out!', 'Error');
+      console.log(error);
+    });
+  }
+
+  // Toasts user if they are not logged in
+  async checkAuthentication():Promise<void> {
     const user = await this.afAuth.currentUser;
     if (user === null) {
       this.toaster.error('You must be logged in to view your notes', 'Oops!');
