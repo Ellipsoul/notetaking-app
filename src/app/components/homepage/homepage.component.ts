@@ -19,9 +19,10 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signInWithGoogle() {
+  signInWithGoogle(): void {
     // Create a google authentication sign in with popup
-    const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    const googleAuthProvider: firebase.auth.GoogleAuthProvider =
+      new firebase.auth.GoogleAuthProvider();
     this.afAuth.signInWithPopup(googleAuthProvider)
         .then(() => {
           this.router.navigate(['/dashboard']);
@@ -33,7 +34,7 @@ export class HomepageComponent implements OnInit {
         });
   }
 
-  signOut() {
+  signOut(): void {
     this.afAuth.signOut().then(() => {
       this.toaster.info('Signed Out!', 'Info');
     }).catch((error) => {

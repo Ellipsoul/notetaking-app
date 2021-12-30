@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   @Output() themeEvent = new EventEmitter<string>();
 
-  currentTheme:string;
+  currentTheme: string;
 
   constructor(
     private themeService: ThemeService,
@@ -33,9 +33,10 @@ export class NavbarComponent implements OnInit {
     this.themeEvent.emit(this.currentTheme);
   }
 
-  signInWithGoogle() {
+  signInWithGoogle(): void {
     // Create a google authentication sign in with popup
-    const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    const googleAuthProvider: firebase.auth.GoogleAuthProvider =
+      new firebase.auth.GoogleAuthProvider();
     this.afAuth.signInWithPopup(googleAuthProvider)
         .then(() => {
           this.router.navigate(['/dashboard']);
@@ -47,7 +48,7 @@ export class NavbarComponent implements OnInit {
         });
   }
 
-  signOut() {
+  signOut(): void {
     this.afAuth.signOut().then(() => {
       this.toaster.info('Signed Out!', 'Info');
     }).catch((error) => {

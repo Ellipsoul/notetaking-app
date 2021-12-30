@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     Promise<boolean | UrlTree> {
     // Retrieve the current user from firebase
     const user = await this.afAuth.currentUser;
-    const isAuthenticated = user ? true : false;
+    const isAuthenticated: boolean = user ? true : false;
 
     // If the user is not authenticated, they cannot access the route
     if (!isAuthenticated) {
