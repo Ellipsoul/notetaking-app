@@ -51,6 +51,7 @@ export class NavbarComponent implements OnInit {
   signOut(): void {
     this.afAuth.signOut().then(() => {
       this.toaster.info('Signed Out!', 'Info');
+      this.router.navigate(['/home']);
     }).catch((error) => {
       this.toaster.error('Failed to sign out!', 'Error');
       console.log(error);

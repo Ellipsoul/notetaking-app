@@ -28,7 +28,7 @@ module.exports = {
         '7xl': '4rem',
       },
       flexGrow: {
-        2: 2,
+        10: 10,
       },
     },
   },

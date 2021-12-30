@@ -28,6 +28,9 @@ export class DashboardComponent implements OnInit {
     this.firestore = getFirestore();
   }
 
+  // Identify a doc by the created timestamp since it'll be unique
+  // Maybe even make the ID of the doc the unix timestamp
+
   async clicked(): Promise<void> {
     console.log(this.user);
     console.log(this.user.uid);

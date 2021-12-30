@@ -1,39 +1,104 @@
-<!-- Top-bar represented by material toolbar  -->
-<!-- Don't ask me why this has to be in-line. Doesn't work otherwise... -->
 <div
-  ngClass="flex flex-row items-center justify-between
-  h-28 px-12 bg-amber-50 dark:bg-gray-800 drop-shadow-lg"
+  ngClass="
+    flex flex-row items-center justify-between
+    h-20 pl-12 pr-5 gap-x-3
+    bg-slate-100 dark:bg-slate-800 drop-shadow-lg"
 >
-  <button mat-raised-button color="accent" (click)="toggleTheme()">
-    Toggle Theme
-  </button>
+  <!-- Name and slogan of app -->
+  <div ngClass="text-black dark:text-white flex flex-row gap-x-3 items-end">
+    <div ngClass="font-serif font-bold text-4xl">NanoNote</div>
+    <div ngClass="font-sans text-sm hidden md:block">A tiny notes app</div>
+  </div>
 
-  <button mat-raised-button color="primary" routerLink="/home">Home</button>
-  <button mat-raised-button color="accent" routerLink="/about">About</button>
+  <!-- Large gap between name and action buttons -->
+  <div ngClass="grow-10"></div>
+
+  <!-- Home screen -->
   <button
     mat-raised-button
-    color="warn"
+    color="basic"
+    routerLink="/home"
+    ngClass="md:flex flex-col text-black dark:text-white hidden"
+  >
+    <mat-icon>home</mat-icon>
+    <div>Home</div>
+  </button>
+  <!-- Main notes screen -->
+  <button
+    mat-raised-button
+    color="basic"
     routerLink="/dashboard"
+    ngClass="md:flex flex-col text-black dark:text-white hidden"
     (click)="checkAuthentication()"
   >
-    Dashboard
+    <mat-icon>dashboard</mat-icon>
+    <div>Dashboard</div>
   </button>
-
+  <!-- Google Sign in -->
   <button
     mat-raised-button
-    color="primary"
+    color="basic"
     *ngIf="(afAuth.authState | async) === null"
+    ngClass="md:flex flex-col text-black dark:text-white hidden"
     (click)="signInWithGoogle()"
   >
-    Sign In with Google
+    <mat-icon>account_circle</mat-icon>
+    <div>Sign In</div>
   </button>
-
+  <!-- Signing out -->
   <button
     mat-raised-button
-    color="primary"
+    color="basic"
     *ngIf="afAuth.authState | async"
+    ngClass="md:flex flex-col text-black dark:text-white hidden"
     (click)="signOut()"
   >
-    Sign Out
+    <mat-icon>account_circle</mat-icon>
+    <div>Sign Out</div>
   </button>
+  <!-- Small gap between action buttons and theme toggler -->
+  <div ngClass="grow"></div>
+  <!-- Theme toggler -->
+  <button
+    mat-raised-button
+    color="basic"
+    ngClass="md:flex flex-col text-black dark:text-white hidden"
+    (click)="toggleTheme()"
+  >
+    <mat-icon *ngIf="currentTheme === 'dark'">dark_mode</mat-icon>
+    <mat-icon *ngIf="currentTheme === 'light'">light_mode</mat-icon>
+    <div>Theme</div>
+  </button>
+
+  <!-- Menu with same buttons for small screens -->
+  <button
+    mat-icon-button
+    ngClass="text-black dark:text-white md:hidden"
+    [matMenuTriggerFor]="menu"
+    #matMenuTrigger="matMenuTrigger"
+    (window:resize)="matMenuTrigger.closeMenu()"
+  >
+    <mat-icon ngClass="absolute left-2 top-2">menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/home">Home</button>
+    <button
+      mat-menu-item
+      routerLink="/dashboard"
+      (click)="checkAuthentication()"
+    >
+      Dashboard
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="(afAuth.authState | async) === null"
+      (click)="signInWithGoogle()"
+    >
+      Sign In
+    </button>
+    <button mat-menu-item *ngIf="afAuth.authState | async" (click)="signOut()">
+      Sign Out
+    </button>
+    <button mat-menu-item (click)="toggleTheme()">Toggle Theme</button>
+  </mat-menu>
 </div>
