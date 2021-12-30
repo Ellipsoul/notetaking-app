@@ -16,7 +16,8 @@ export class HomepageComponent implements OnInit {
     private router: Router,
     private toaster: ToastrService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   signInWithGoogle() {
     // Create a google authentication sign in with popup
@@ -24,35 +25,19 @@ export class HomepageComponent implements OnInit {
     this.afAuth.signInWithPopup(googleAuthProvider)
         .then(() => {
           this.router.navigate(['/dashboard']);
-          this.toaster.success('Signed In!', 'Success', {
-            timeOut: 3000,
-            positionClass: 'toast-bottom-left',
-            progressBar: true,
-          });
+          this.toaster.success('Signed In!', 'Success');
         })
         .catch((error) => {
-          this.toaster.error('Failed to sign in!', 'Error', {
-            timeOut: 3000,
-            positionClass: 'toast-bottom-left',
-            progressBar: true,
-          });
+          this.toaster.error('Failed to sign in!', 'Error');
           console.log(error);
         });
   }
 
   signOut() {
     this.afAuth.signOut().then(() => {
-      this.toaster.success('Signed Out!', '', {
-        timeOut: 3000,
-        positionClass: 'toast-bottom-left',
-        progressBar: true,
-      });
+      this.toaster.info('Signed Out!', 'Info');
     }).catch((error) => {
-      this.toaster.error('Failed to sign out!', 'Error', {
-        timeOut: 3000,
-        positionClass: 'toast-bottom-left',
-        progressBar: true,
-      });
+      this.toaster.error('Failed to sign out!', 'Error');
       console.log(error);
     });
   }

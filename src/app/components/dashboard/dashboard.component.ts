@@ -21,11 +21,7 @@ export class DashboardComponent implements OnInit {
   signOut() {
     this.afAuth.signOut().then(() => {
       this.router.navigate(['/home']);
-      this.toaster.info('Signed Out!', '', {
-        timeOut: 3000,
-        positionClass: 'toast-bottom-left',
-        progressBar: true,
-      });
+      this.toaster.info('Signed Out!', 'Info');
     });
   }
 }

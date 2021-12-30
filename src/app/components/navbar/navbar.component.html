@@ -10,7 +10,12 @@
 
   <button mat-raised-button color="primary" routerLink="/home">Home</button>
   <button mat-raised-button color="accent" routerLink="/about">About</button>
-  <button mat-raised-button color="warn" routerLink="/dashboard">
+  <button
+    mat-raised-button
+    color="warn"
+    routerLink="/dashboard"
+    (click)="handleClick()"
+  >
     Dashboard
   </button>
 </div>

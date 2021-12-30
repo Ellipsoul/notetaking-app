@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth/';
 
 import { ThemeService } from '../../services/theme.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +14,14 @@ export class NavbarComponent implements OnInit {
 
   currentTheme:string;
 
-  constructor(private themeService: ThemeService) {
+  constructor(
+    private themeService: ThemeService,
+    private afAuth: AngularFireAuth,
+    private toaster: ToastrService) {
     this.currentTheme = this.themeService.getTheme();
+  }
+
+  ngOnInit(): void {
   }
 
   toggleTheme():void {
@@ -22,6 +30,10 @@ export class NavbarComponent implements OnInit {
     this.themeEvent.emit(this.currentTheme);
   }
 
-  ngOnInit(): void {
+  async handleClick():Promise<void> {
+    const user = await this.afAuth.currentUser;
+    if (user === null) {
+      this.toaster.error('You must be logged in to view your notes', 'Oops!');
+    }
   }
 }
