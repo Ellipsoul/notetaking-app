@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  // Passes theme to parent component
   @Output() themeEvent = new EventEmitter<string>();
-
   currentTheme: string;
 
   constructor(
@@ -24,19 +24,20 @@ export class NavbarComponent implements OnInit {
     this.currentTheme = this.themeService.getTheme();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  // Toggles the theme and informs parent component
   toggleTheme():void {
     this.themeService.toggleTheme();
     this.currentTheme = this.themeService.getTheme();
     this.themeEvent.emit(this.currentTheme);
   }
 
+  // Signs in with Google using a popup
   signInWithGoogle(): void {
-    // Create a google authentication sign in with popup
     const googleAuthProvider: firebase.auth.GoogleAuthProvider =
       new firebase.auth.GoogleAuthProvider();
+    // Attempt to sign in, and catch any errors
     this.afAuth.signInWithPopup(googleAuthProvider)
         .then(() => {
           this.router.navigate(['/dashboard']);
@@ -48,6 +49,7 @@ export class NavbarComponent implements OnInit {
         });
   }
 
+  // Sign out and redirect to home page
   signOut(): void {
     this.afAuth.signOut().then(() => {
       this.toaster.info('Signed Out!', 'Info');
@@ -58,7 +60,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  // Toasts user if they are not logged in
+  // Runs when user attempts to access the dashboard
   async checkAuthentication():Promise<void> {
     const user = await this.afAuth.currentUser;
     if (user === null) {
