@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { NoteComponent } from './components/dashboard/note/note.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { environment } from '../environments/environment';
     NavbarComponent,
     HomepageComponent,
     DashboardComponent,
+    NoteComponent,
   ],
   imports: [
     BrowserModule,

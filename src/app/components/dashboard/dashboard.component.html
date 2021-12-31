@@ -1,17 +1,4 @@
-<div
-  ngClass="
-  bg-stone-100 dark:bg-slate-700
-    flex flex-row w-full flex-wrap
-  text-black dark:text-white grow"
->
-  <div>You are in the dashboard!</div>
-  <button mat-raised-button color="primary" (click)="clicked()">
-    Firebase Stuff!
-  </button>
-
-  <button mat-raised-button color="accent" (click)="addNote()">Add Note</button>
-  <ng-container *ngFor="let note of notes">
-    <div>{{ note.title }}</div>
-    <div>{{ note.content }}</div>
-  </ng-container>
-</div>
+<button mat-raised-button color="accent" (click)="addNote()">Add Note</button>
+<ng-container *ngFor="let note of notes">
+  <app-note [note]="note"></app-note>
+</ng-container>

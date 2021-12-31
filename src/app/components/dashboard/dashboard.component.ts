@@ -5,23 +5,9 @@ import { getFirestore, getDocs, collection, Firestore,
   doc, setDoc, Timestamp, CollectionReference, DocumentData } from '@angular/fire/firestore';
 import { getAuth, User } from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
-import { lorem } from 'faker';
+import { Note, Tag } from '../../services/note.service';
 
-enum Tag {
-  General = 'General',
-  Personal = 'Personal',
-  Work = 'Work',
-  Other = 'Other',
-}
-interface Note {
-  title: string;
-  subtitle: string;
-  content: string;
-  tag: string;
-  favorite: boolean;
-  createdAt: Timestamp;
-  lastModified: Timestamp;
-}
+import { lorem } from 'faker';
 
 @Component({
   selector: 'app-dashboard',
@@ -55,19 +41,6 @@ export class DashboardComponent implements OnInit {
       snapshot.docs.forEach((doc) => {
         this.notes.push(doc.data() as Note);
       });
-    });
-  }
-
-  async clicked(): Promise<void> {
-    console.log(this.user);
-    console.log(this.user.uid);
-
-    // This will retrieve the notes collection for the current user
-    const collectionRef:CollectionReference<DocumentData> =
-      collection(this.firestore, 'users', this.user.uid, 'notes');
-    const snapshot = await getDocs(collectionRef);
-    snapshot.forEach((doc) => {
-      console.log(doc.data());
     });
   }
 
