@@ -1,4 +1,7 @@
-<button mat-raised-button color="accent" (click)="addNote()">Add Note</button>
-<ng-container *ngFor="let note of notes">
-  <app-note [note]="note"></app-note>
-</ng-container>
+<!-- <button mat-raised-button color="accent" (click)="addNote()">Add Note</button> -->
+<div ngClass="h-12 w-full border-2 border-brown-300">Buttons here</div>
+<div ngClass="notes-container">
+  <ng-container *ngFor="let note of notes">
+    <app-note [note]="note"></app-note>
+  </ng-container>
+</div>

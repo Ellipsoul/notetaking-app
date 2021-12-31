@@ -1,6 +1,6 @@
 {
   "name": "notetaking-app",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@tailwindcss/line-clamp": "^0.3.0",
     "firebase": "^9.6.1",
     "ngx-toastr": "^14.2.1",
     "rxjs": "~7.4.0",
