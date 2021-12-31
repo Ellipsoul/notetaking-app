@@ -8,10 +8,11 @@ import { Timestamp } from 'firebase/firestore';
   styleUrls: ['./note.component.css']
 })
 export class NoteComponent implements OnInit {
+  // Useful to have some default values
   @Input()
   note: Note = {
     title: '',
-    subtitle: '',
+    description: '',
     content: '',
     tag: Tag.General,
     favorite: false,

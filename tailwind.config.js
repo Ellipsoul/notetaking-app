@@ -11,7 +11,9 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
-      serif: ['Fira Code', 'serif'],
+      serif: ['"Fira Code"', 'serif'],
+      cardtitle: ['Optima', 'serif'],
+      carddescription: ['Verdana', 'sans-serif'],
     },
     extend: {
       scale: {
@@ -29,6 +31,12 @@ module.exports = {
       },
       flexGrow: {
         10: 10,
+      },
+      lineClamp: {
+        9: '9',
+      },
+      height: {
+        description: '72%',
       },
     },
   },

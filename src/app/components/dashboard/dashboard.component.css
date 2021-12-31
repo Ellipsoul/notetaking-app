@@ -3,13 +3,15 @@
 @tailwind components;
 
 @layer components {
-  /* Weirdge, but the component itself needs to be styled like this */
+  /* Weirdge, but the component itself needs to be styled like this
+     Host contains the action buttons container and the actual notes */
   :host {
     @apply flex flex-col w-full grow;
     @apply bg-stone-100 dark:bg-slate-700;
     @apply text-black dark:text-white;
   }
 
+  /* The notes container */
   .notes-container {
     @apply flex flex-row flex-wrap;
     @apply px-8 py-4 gap-x-4 gap-y-4;

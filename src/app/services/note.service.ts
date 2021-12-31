@@ -10,7 +10,7 @@ export enum Tag {
 
 export interface Note {
   title: string;
-  subtitle: string;
+  description: string;
   content: string;
   tag: string;
   favorite: boolean;

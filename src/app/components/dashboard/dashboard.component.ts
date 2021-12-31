@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // Temporary function to generate a random note
   async addNote(): Promise<void> {
     const timestamp = Timestamp.now();
     const timestampString = timestamp.toMillis().toString();
@@ -52,7 +53,7 @@ export class DashboardComponent implements OnInit {
 
     const data: Note = {
       title: lorem.words(2),
-      subtitle: lorem.words(5),
+      description: lorem.words(5),
       content: lorem.sentences(1),
       tag: Tag.General,
       favorite: false,

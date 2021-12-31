@@ -6,11 +6,9 @@
   /* Weirdge, but the component itself needs to be styled like this */
   :host {
     @apply flex flex-col w-48 h-48 gap-y-2;
-    @apply p-2 rounded-md;
-    @apply bg-slate-200 dark:bg-slate-600;
-  }
-
-  :host > * {
-    @apply border border-green-100;
+    @apply px-4 py-2 rounded-md drop-shadow-lg;
+    @apply bg-zinc-200 dark:bg-slate-600;
+    @apply hover:bg-zinc-400 hover:dark:bg-slate-800;
+    @apply cursor-pointer;
   }
 }

@@ -1,6 +1,9 @@
-<!-- <button mat-raised-button color="accent" (click)="addNote()">Add Note</button> -->
 <div ngClass="h-12 w-full border-2 border-brown-300">Buttons here</div>
 <div ngClass="notes-container">
+  <!-- Use this to create random new notes in Firebase -->
+  <!-- <button mat-raised-button color="accent" (click)="addNote()">Add Note</button> -->
+
+  <!-- Map the retrieved data to a set of note components -->
   <ng-container *ngFor="let note of notes">
     <app-note [note]="note"></app-note>
   </ng-container>
