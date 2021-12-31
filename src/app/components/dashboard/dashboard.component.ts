@@ -1,9 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { getFirestore, getDocs, collection, Firestore } from '@angular/fire/firestore';
+import { getFirestore, getDocs, collection, Firestore,
+  doc, setDoc, Timestamp } from '@angular/fire/firestore';
 import firebase from 'firebase/compat/app';
 import { ToastrService } from 'ngx-toastr';
+import { lorem } from 'faker';
+
+enum Tag {
+  General = 'General',
+  Personal = 'Personal',
+  Work = 'Work',
+  Other = 'Other',
+}
+interface Note {
+  title: string;
+  subtitle: string;
+  content: string;
+  tag: string;
+  favorite: boolean;
+  createdAt: Timestamp;
+  lastModified: Timestamp;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -28,9 +46,6 @@ export class DashboardComponent implements OnInit {
     this.firestore = getFirestore();
   }
 
-  // Identify a doc by the created timestamp since it'll be unique
-  // Maybe even make the ID of the doc the unix timestamp
-
   async clicked(): Promise<void> {
     console.log(this.user);
     console.log(this.user.uid);
@@ -41,5 +56,25 @@ export class DashboardComponent implements OnInit {
     snapshot.forEach((doc) => {
       console.log(doc.data());
     });
+  }
+
+  async addNote(): Promise<void> {
+    const timestamp = Timestamp.now();
+    const timestampString = timestamp.toMillis().toString();
+
+    const docRef:any = doc(this.firestore, 'users', this.user.uid, 'notes', timestampString);
+
+    const data: Note = {
+      title: lorem.words(2),
+      subtitle: lorem.words(5),
+      content: lorem.sentences(1),
+      tag: Tag.General,
+      favorite: false,
+      createdAt: timestamp,
+      lastModified: timestamp,
+    };
+
+    await setDoc(docRef, data);
+    this.toaster.success('Note added');
   }
 }
