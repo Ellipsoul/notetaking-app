@@ -1,7 +1,7 @@
 <div
   ngClass="
   bg-stone-100 dark:bg-slate-700
-    flex flex-col w-full
+    flex flex-row w-full flex-wrap
   text-black dark:text-white grow"
 >
   <div>You are in the dashboard!</div>
@@ -10,4 +10,8 @@
   </button>
 
   <button mat-raised-button color="accent" (click)="addNote()">Add Note</button>
+  <ng-container *ngFor="let note of notes">
+    <div>{{ note.title }}</div>
+    <div>{{ note.content }}</div>
+  </ng-container>
 </div>

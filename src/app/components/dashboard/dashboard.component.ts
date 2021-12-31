@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { getFirestore, getDocs, collection, Firestore,
-  doc, setDoc, Timestamp } from '@angular/fire/firestore';
-import firebase from 'firebase/compat/app';
+  doc, setDoc, Timestamp, CollectionReference, DocumentData } from '@angular/fire/firestore';
+import { getAuth, User } from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
 import { lorem } from 'faker';
 
@@ -30,8 +30,9 @@ interface Note {
 })
 export class DashboardComponent implements OnInit {
   // Non-null assertion since route is protected by auth guard
-  user!: firebase.User;
+  user!: User;
   firestore!: Firestore;
+  notes: Note[] = [];
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -40,10 +41,21 @@ export class DashboardComponent implements OnInit {
 
   // Retrieve authenticated user object and initliase firestore
   ngOnInit(): void {
-    this.afAuth.user.subscribe((user) => {
-      this.user = user!;
-    });
+    // Get the currently authenticated user
+    const auth = getAuth();
+    this.user = auth.currentUser!;
+    // Retrieve an instance of firestore
     this.firestore = getFirestore();
+
+    // Retrieve notes collection for the current user
+    const notesCollectionRef: CollectionReference<DocumentData> =
+      collection(this.firestore, 'users', this.user.uid, 'notes');
+    // Retrieve all notes for the current user
+    const notesSnapshot = getDocs(notesCollectionRef).then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        this.notes.push(doc.data() as Note);
+      });
+    });
   }
 
   async clicked(): Promise<void> {
@@ -51,7 +63,8 @@ export class DashboardComponent implements OnInit {
     console.log(this.user.uid);
 
     // This will retrieve the notes collection for the current user
-    const collectionRef:any = collection(this.firestore, 'users', this.user.uid, 'notes');
+    const collectionRef:CollectionReference<DocumentData> =
+      collection(this.firestore, 'users', this.user.uid, 'notes');
     const snapshot = await getDocs(collectionRef);
     snapshot.forEach((doc) => {
       console.log(doc.data());
@@ -74,7 +87,10 @@ export class DashboardComponent implements OnInit {
       lastModified: timestamp,
     };
 
-    await setDoc(docRef, data);
-    this.toaster.success('Note added');
+    await setDoc(docRef, data).then(() => {
+      this.toaster.success('Note added', 'Success');
+    }).catch((error) => {
+      this.toaster.error(error.message, 'Error');
+    });
   }
 }
