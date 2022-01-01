@@ -26,7 +26,7 @@ export class HomepageComponent implements OnInit {
     this.afAuth.signInWithPopup(googleAuthProvider)
         .then(() => {
           this.router.navigate(['/dashboard']);
-          this.toaster.success('Signed In!', 'Success');
+          this.toaster.success('Welcome', 'Signed In!');
         })
         .catch((error) => {
           this.toaster.error('Failed to sign in!', 'Error');
@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
 
   signOut(): void {
     this.afAuth.signOut().then(() => {
-      this.toaster.info('Signed Out!', 'Info');
+      this.toaster.info('See you next time', 'Signed Out!');
     }).catch((error) => {
       this.toaster.error('Failed to sign out!', 'Error');
       console.log(error);

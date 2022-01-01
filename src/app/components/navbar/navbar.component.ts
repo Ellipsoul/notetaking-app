@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
     this.afAuth.signInWithPopup(googleAuthProvider)
         .then(() => {
           this.router.navigate(['/dashboard']);
-          this.toaster.success('Signed In!', 'Success');
+          this.toaster.success('Welcome' ,'Signed In!');
         })
         .catch((error) => {
           this.toaster.error('Failed to sign in!', 'Error');
@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit {
   // Sign out and redirect to home page
   signOut(): void {
     this.afAuth.signOut().then(() => {
-      this.toaster.info('Signed Out!', 'Info');
+      this.toaster.info('See you next time', 'Signed Out!');
       this.router.navigate(['/home']);
     }).catch((error) => {
       this.toaster.error('Failed to sign out!', 'Error');
