@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -39,6 +41,8 @@ import { environment } from '../environments/environment';
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
+    MatInputModule,
+    FormsModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-bottom-left',

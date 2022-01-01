@@ -80,7 +80,11 @@ export class DashboardComponent implements OnInit {
     // Open dialog and pass in the note if present
     const dialogRef = this.dialog.open(
       NoteDialogComponent,
-      { data: note, panelClass: this.applyTheme() === 'light' ? 'light-dialog' : 'dark-dialog', height: '80vh', width: '60vw' },
+      {
+        data: note,
+        panelClass: this.applyTheme() === 'light' ? 'light-dialog' : 'dark-dialog',
+        height: '80vh',
+        width: '80vw' },
     );
 
     // Tracks the dialog result when it is closed
