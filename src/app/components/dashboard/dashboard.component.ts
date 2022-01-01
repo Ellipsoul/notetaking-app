@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { getFirestore, getDocs, collection, Firestore,
-  doc, setDoc, Timestamp, CollectionReference, DocumentData } from '@angular/fire/firestore';
+  doc, setDoc, Timestamp, CollectionReference, DocumentData,
+  DocumentReference } from '@angular/fire/firestore';
 import { getAuth, User } from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
-import { Note, Tag } from '../../services/note.service';
+import { Note, Tag, NoteService } from '../../services/note.service';
 
 import { lorem } from 'faker';
 
@@ -22,14 +23,17 @@ export class DashboardComponent implements OnInit {
   // Non-null assertion since route is protected by auth guard
   user!: User;
   firestore!: Firestore;
-  notes: Note[] = [];
+  notes: Note[];
 
   constructor(
     public afAuth: AngularFireAuth,
     private toaster: ToastrService,
     private themeService: ThemeService,
     public dialog: MatDialog,
-  ) { }
+    private noteService: NoteService,
+  ) {
+    this.notes = this.noteService.getNotes();
+  }
 
   // Retrieve authenticated user object and initliase firestore
   ngOnInit(): void {
@@ -45,8 +49,12 @@ export class DashboardComponent implements OnInit {
     // Retrieve all notes for the current user
     const notesSnapshot = getDocs(notesCollectionRef).then((snapshot) => {
       snapshot.docs.forEach((doc) => {
-        this.notes.push(doc.data() as Note);
+        // Append to the notes in the service
+        this.noteService.appendNote(doc.data() as Note);
       });
+    }).catch((error) => {
+      this.toaster.error('Failed to retrieve notes', 'Error');
+      console.log(error)
     });
   }
 
@@ -55,7 +63,8 @@ export class DashboardComponent implements OnInit {
     const timestamp = Timestamp.now();
     const timestampString = timestamp.toMillis().toString();
 
-    const docRef:any = doc(this.firestore, 'users', this.user.uid, 'notes', timestampString);
+    const docRef:DocumentReference<DocumentData> =
+      doc(this.firestore, 'users', this.user.uid, 'notes', timestampString);
 
     const data: Note = {
       title: lorem.words(2),

@@ -6,7 +6,7 @@
   /* Weirdge, but the component itself needs to be styled like this
      Host contains the action buttons container and the actual notes */
   :host {
-    @apply flex flex-col w-full grow;
+    @apply flex flex-col w-full grow pb-8;
     @apply bg-stone-100 dark:bg-slate-700;
     @apply text-black dark:text-white;
   }
