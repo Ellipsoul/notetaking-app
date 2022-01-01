@@ -15,10 +15,10 @@ module.exports = {
       cardtitle: ['Optima', 'serif'],
       carddescription: ['Verdana', 'sans-serif'],
     },
-    screens: {
-      mobile: '425px',
-    },
     extend: {
+      screens: {
+        mobile: '425px',
+      },
       scale: {
         101: '1.01',
         115: '1.15',

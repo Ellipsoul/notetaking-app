@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { getFirestore, getDocs, collection, Firestore,
-  doc, setDoc, Timestamp, CollectionReference, DocumentData,
-  DocumentReference } from '@angular/fire/firestore';
+import { getFirestore, getDocs, collection, Firestore, CollectionReference,
+  DocumentData } from '@angular/fire/firestore';
 import { getAuth, User } from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
-import { Note, Tag, NoteService } from '../../services/note.service';
-
-import { lorem } from 'faker';
+import { Note, NoteService } from '../../services/note.service';
 
 import { ThemeService } from 'src/app/services/theme.service';
 import { NoteDialogComponent } from './note-dialog/note-dialog.component';
@@ -58,32 +55,6 @@ export class DashboardComponent implements OnInit {
     }).catch((error) => {
       this.toaster.error('Failed to retrieve notes', 'Error');
       console.log(error)
-    });
-  }
-
-  // Temporary function to generate a random note
-  async addNote(): Promise<void> {
-    const timestamp = Timestamp.now();
-    const timestampString = timestamp.toMillis().toString();
-
-    const docRef:DocumentReference<DocumentData> =
-      doc(this.firestore, 'users', this.user.uid, 'notes', timestampString);
-
-    const data: Note = {
-      title: lorem.words(2),
-      description: lorem.words(5),
-      content: lorem.sentences(1),
-      tag: Tag.General,
-      favorite: false,
-      createdAt: timestamp,
-      lastModified: timestamp,
-    };
-
-    await setDoc(docRef, data).then(() => {
-      this.toaster.success('Note added', 'Success');
-      this.notes.push(data);
-    }).catch((error) => {
-      this.toaster.error(error.message, 'Error');
     });
   }
 

@@ -1,0 +1,6 @@
+{
+  "hosting": {
+    "public": "dist/notetaking-app",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "notetaking-app",
-  "version": "0.7.3",
+  "version": "0.8.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +32,6 @@
     "@angular-devkit/build-angular": "~13.0.4",
     "@angular/cli": "~13.0.4",
     "@angular/compiler-cli": "~13.0.0",
-    "@types/faker": "^5.5.9",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
