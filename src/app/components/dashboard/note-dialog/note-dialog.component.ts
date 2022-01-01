@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Note, NoteService, Tag } from '../../../services/note.service';
-import { getFirestore, getDocs, collection, Firestore,
-  doc, setDoc, Timestamp, DocumentData, DocumentReference } from 'firebase/firestore';
+import { getFirestore, deleteDoc, Firestore, doc,
+  setDoc, Timestamp, DocumentData, DocumentReference } from 'firebase/firestore';
 import { ThemeService } from 'src/app/services/theme.service';
 import { ToastrService } from 'ngx-toastr';
 import { getAuth, User } from 'firebase/auth';
@@ -61,8 +61,10 @@ export class NoteDialogComponent implements OnInit {
     if (this.data) {
       // Updating existing note
       const createdAtString: string = this.noteService.convertToMillis(this.currentNote.createdAt)
+      // Retrieve the document reference
       const docRef:DocumentReference<DocumentData> =
         doc(this.firestore, 'users', this.user.uid, 'notes', createdAtString);
+      // Gather the note data
       const data: Note = {
         title: this.currentNote.title,
         description: this.currentNote.description,
@@ -72,7 +74,7 @@ export class NoteDialogComponent implements OnInit {
         createdAt: this.currentNote.createdAt,
         lastModified: Timestamp.now(),
       };
-
+      // Update the existing note
       setDoc(docRef, data).then(() => {
         this.toaster.success('Note updated!', 'Success');
         this.noteService.updateNote(this.currentNote);
@@ -83,11 +85,12 @@ export class NoteDialogComponent implements OnInit {
       });
     } else {
       // Creating new note
+      // Retrieve the document reference and current time
       const timeNow: Timestamp = Timestamp.now();
       const createdAtString: string = this.noteService.convertToMillis(timeNow);
       const docRef:DocumentReference<DocumentData> =
         doc(this.firestore, 'users', this.user.uid, 'notes', createdAtString);
-      this.noteService.appendNote(this.currentNote);
+      // Gather the note data
       const data: Note = {
         title: this.currentNote.title,
         description: this.currentNote.description,
@@ -95,12 +98,20 @@ export class NoteDialogComponent implements OnInit {
         tag: Tag.General,
         favorite: false,
         createdAt: timeNow,
-        lastModified: Timestamp.now(),
+        lastModified: timeNow,
       };
-
+      // Create the note and add it to firebase
       setDoc(docRef, data).then(() => {
         this.toaster.success('Note created!', 'Success');
-        this.noteService.appendNote(this.currentNote);
+        this.noteService.appendNote({
+          title: this.currentNote.title,
+          description: this.currentNote.description,
+          content: this.currentNote.content,
+          tag: Tag.General,
+          favorite: false,
+          createdAt: timeNow,
+          lastModified: Timestamp.now(),
+        });
         this.dialogRef.close();
       }).catch((error) => {
         this.toaster.error(error.message, 'Error');
@@ -109,7 +120,19 @@ export class NoteDialogComponent implements OnInit {
     }
   }
 
+  // Delete a note from Firebase
   deleteNote(): void {
-    // const createdAtString: string = this.noteService.convertToMillis(this.currentNote.createdAt)
+    const createdAtString: string = this.noteService.convertToMillis(this.currentNote.createdAt);
+    const docRef: DocumentReference<DocumentData> =
+      doc(this.firestore, 'users', this.user.uid, 'notes', createdAtString);
+
+    deleteDoc(docRef).then(() => {
+      this.toaster.success('Note deleted!', 'Success');
+      this.noteService.removeNoteByTimestamp(this.currentNote.createdAt);
+      this.dialogRef.close();
+    }).catch((error) => {
+      this.toaster.error(error.message, 'Error');
+      console.log(error);
+    });
   }
 }
