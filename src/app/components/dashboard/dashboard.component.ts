@@ -9,6 +9,8 @@ import { Note, Tag } from '../../services/note.service';
 
 import { lorem } from 'faker';
 
+import { ThemeService } from 'src/app/services/theme.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -22,7 +24,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public afAuth: AngularFireAuth,
-    private toaster: ToastrService) {
+    private toaster: ToastrService,
+    private themeService: ThemeService) {
   }
 
   // Retrieve authenticated user object and initliase firestore
@@ -63,8 +66,14 @@ export class DashboardComponent implements OnInit {
 
     await setDoc(docRef, data).then(() => {
       this.toaster.success('Note added', 'Success');
+      this.notes.push(data);
     }).catch((error) => {
       this.toaster.error(error.message, 'Error');
     });
+  }
+
+  // For some reason Angular lost track of the theme from further up
+  applyTheme(): string {
+    return this.themeService.getTheme();
   }
 }

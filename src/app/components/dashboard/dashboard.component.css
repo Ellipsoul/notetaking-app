@@ -11,10 +11,26 @@
     @apply text-black dark:text-white;
   }
 
+  .actions-container {
+    @apply flex flex-row items-center;
+    /* For some reason padding works here but not inline */
+    @apply px-8 gap-x-6 h-16 w-full;
+  }
+
   /* The notes container */
   .notes-container {
-    @apply flex flex-row flex-wrap;
-    @apply px-8 py-4 gap-x-4 gap-y-4;
-    @apply justify-evenly sm:justify-start;
+    /* A cool grid arrangement to line up the last row of items */
+    @apply grid justify-between grid-cols-auto;
+    @apply px-8 py-0 gap-x-4 gap-y-4;
+  }
+
+  button {
+    @apply px-4 py-2;
+  }
+
+  .mat-raised-button.mat-newnote {
+    @apply bg-zinc-700 dark:bg-zinc-100;
+    @apply text-white dark:text-black;
+    @apply hover:text-amber-200 hover:dark:text-green-300;
   }
 }

@@ -38,6 +38,9 @@ module.exports = {
       height: {
         description: '72%',
       },
+      gridTemplateColumns: {
+        auto: 'repeat(auto-fill, 12rem)',
+      },
     },
   },
   variants: {},

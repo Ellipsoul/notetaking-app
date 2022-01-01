@@ -8,11 +8,11 @@ import { DashboardComponent } from '../components/dashboard/dashboard.component'
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['home']);
 
 const routes: Routes = [
-  { path: 'home', component: HomepageComponent },
+  { path: 'home', component: HomepageComponent, data: { title: 'NanoNote - Home' } },
   { path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToHome } },
+    data: { authGuardPipe: redirectUnauthorizedToHome, title: 'NanoNote - Dashboard' } },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
