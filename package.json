@@ -1,6 +1,6 @@
 {
   "name": "notetaking-app",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -25,7 +25,6 @@
     "firebase": "^9.6.1",
     "ngx-toastr": "^14.2.1",
     "rxjs": "~7.4.0",
-    "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -39,7 +38,6 @@
     "autoprefixer": "^10.4.0",
     "eslint": "^8.5.0",
     "eslint-config-google": "^0.14.0",
-    "faker": "^5.5.3",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
