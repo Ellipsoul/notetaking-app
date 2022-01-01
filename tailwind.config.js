@@ -15,6 +15,9 @@ module.exports = {
       cardtitle: ['Optima', 'serif'],
       carddescription: ['Verdana', 'sans-serif'],
     },
+    screens: {
+      mobile: '425px',
+    },
     extend: {
       scale: {
         101: '1.01',

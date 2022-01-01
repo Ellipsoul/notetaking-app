@@ -3,7 +3,7 @@
   <div class="flex flex-col gap-y-1">
     <div ngClass="text-md font-serif">Title</div>
     <input
-      placeholder="Note Title"
+      placeholder="Note title"
       type="text"
       ngClass="
       text-lg p-2 rounded-lg outline outline-1
@@ -18,7 +18,7 @@
   <div class="flex flex-col gap-y-1">
     <div ngClass="text-md font-serif">Description</div>
     <textarea
-      placeholder="Note Title"
+      placeholder="Note description"
       type="text"
       rows="3"
       ngClass="
@@ -34,7 +34,7 @@
   <div class="flex flex-col grow gap-y-1">
     <div ngClass="text-md font-serif">Content</div>
     <textarea
-      placeholder="Note Title"
+      placeholder="Note content"
       type="text"
       ngClass="
         p-2 resize-none rounded-lg outline outline-1 box-border grow
@@ -46,7 +46,8 @@
     ></textarea>
   </div>
 
-  <div ngClass="flex flex-row gap-x-4">
+  <!-- Action buttons for larger devices -->
+  <div ngClass="hidden mobile:flex flex-row gap-x-4">
     <!-- Nothing needs to happen with the cancel button -->
     <button
       mat-raised-button
@@ -54,12 +55,42 @@
       color="action"
       (click)="upsertNote()"
     >
-      Save Changes
+      {{ data === null ? 'Create' : 'Save' }}
     </button>
     <button mat-raised-button mat-dialog-close color="basic">Cancel</button>
     <div ngClass="grow"></div>
-    <button mat-raised-button color="warn" (click)="deleteNote()">
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteNote()"
+      *ngIf="data !== null"
+    >
       Delete Note
+    </button>
+  </div>
+
+  <!-- Action buttons for phones -->
+  <div ngClass="flex mobile:hidden flex-row gap-x-4">
+    <!-- Nothing needs to happen with the cancel button -->
+    <button
+      mat-icon-button
+      cdkFocusInitial
+      color="action"
+      (click)="upsertNote()"
+    >
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-icon-button mat-dialog-close color="basic">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <div ngClass="grow"></div>
+    <button
+      mat-icon-button
+      color="warn"
+      (click)="deleteNote()"
+      *ngIf="data !== null"
+    >
+      <mat-icon>delete</mat-icon>
     </button>
   </div>
 </div>
