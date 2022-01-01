@@ -1,12 +1,21 @@
 <!-- Action buttons container -->
 <div [ngClass]="['actions-container', applyTheme()]">
-  <button
+  <!-- <button
     mat-raised-button
     color="newnote"
     ngClass="drop-shadow-lg"
     (click)="addNote()"
   >
     New Note
+  </button> -->
+
+  <button
+    mat-raised-button
+    color="newnote"
+    (click)="openDialog()"
+    ngClass="drop-shadow-lg"
+  >
+    Open Dialog
   </button>
 
   <div ngClass="grow"></div>
@@ -31,6 +40,6 @@
 <div ngClass="notes-container">
   <!-- Map the retrieved data to a set of note components -->
   <ng-container *ngFor="let note of notes">
-    <app-note [note]="note"></app-note>
+    <app-note [note]="note" (click)="openDialog(note)"></app-note>
   </ng-container>
 </div>

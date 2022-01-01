@@ -8,16 +8,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NoteComponent } from './components/dashboard/note/note.component';
+import { NoteDialogComponent } from './components/dashboard/note-dialog/note-dialog.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-import { NoteComponent } from './components/dashboard/note/note.component';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { NoteComponent } from './components/dashboard/note/note.component';
     HomepageComponent,
     DashboardComponent,
     NoteComponent,
+    NoteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { NoteComponent } from './components/dashboard/note/note.component';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-bottom-left',

@@ -11,3 +11,14 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+/* Custom background and text color for dialog */
+.light-dialog .mat-dialog-container {
+  @apply dark:bg-stone-100;
+  @apply dark:text-black;
+}
+
+.dark-dialog .mat-dialog-container {
+  @apply bg-slate-800;
+  @apply text-white;
+}
