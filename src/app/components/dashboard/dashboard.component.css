@@ -29,7 +29,7 @@
   }
 
   .mat-raised-button.mat-newnote {
-    @apply bg-zinc-700 dark:bg-zinc-300;
+    @apply bg-zinc-700 dark:bg-zinc-200;
     @apply text-white dark:text-black;
     @apply hover:bg-zinc-900 hover:dark:bg-white;
   }
