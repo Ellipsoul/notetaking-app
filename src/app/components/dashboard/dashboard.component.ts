@@ -37,6 +37,9 @@ export class DashboardComponent implements OnInit {
 
   // Retrieve authenticated user object and initliase firestore
   ngOnInit(): void {
+    // Prevent the notes from loading twice on page route change
+    if (this.noteService.getLength() !== 0) return;
+
     // Get the currently authenticated user
     const auth = getAuth();
     this.user = auth.currentUser!;

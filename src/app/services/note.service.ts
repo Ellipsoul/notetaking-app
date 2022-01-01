@@ -75,4 +75,9 @@ export class NoteService {
   convertToMillis(timestamp: Timestamp): string {
     return timestamp.seconds.toString() + timestamp.nanoseconds.toString().slice(0, 3);
   }
+
+  // Return length of notes
+  getLength(): number {
+    return this.notes.getValue().length;
+  }
 }
