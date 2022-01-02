@@ -12,19 +12,29 @@
 
   <div ngClass="grow"></div>
 
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    #matMenuTrigger="matMenuTrigger"
-    (window:resize)="matMenuTrigger.closeMenu()"
-  >
-    <mat-icon ngClass="absolute left-2 top-2">sort</mat-icon>
-  </button>
+  <div ngClass="flex flex-row p-0 items-center">
+    <div>Sort</div>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      #matMenuTrigger="matMenuTrigger"
+      (window:resize)="matMenuTrigger.closeMenu()"
+    >
+      <mat-icon ngClass="absolute left-2 top-2">sort</mat-icon>
+    </button>
+  </div>
+
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Title</button>
-    <button mat-menu-item>Type</button>
-    <button mat-menu-item>Date Created</button>
-    <button mat-menu-item>Date Modified</button>
+    <button mat-menu-item (click)="noteService.sortNotesByTitle()">
+      Title
+    </button>
+    <button mat-menu-item (click)="noteService.sortNotesByTag()">Tag</button>
+    <button mat-menu-item (click)="noteService.sortNotesByCreatedAt()">
+      Time Created
+    </button>
+    <button mat-menu-item (click)="noteService.sortNotesByLastModified()">
+      Last Modified
+    </button>
   </mat-menu>
 </div>
 

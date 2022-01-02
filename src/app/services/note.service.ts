@@ -71,6 +71,72 @@ export class NoteService {
     this.notes.next(notes);
   }
 
+  // Sort the notes array by createdAt timestamp
+  sortNotesByCreatedAt(): void {
+    const notes = this.notes.getValue();
+    notes.sort((a, b) => {
+      return b.createdAt.seconds - a.createdAt.seconds;
+    });
+    // Save the sort format in local storage
+    localStorage.setItem('sort', 'createdAt');
+    this.notes.next(notes);
+  }
+
+  // Sort the notes array by title
+  sortNotesByTitle(): void {
+    const notes = this.notes.getValue();
+    notes.sort((a, b) => {
+      return a.title.localeCompare(b.title);
+    });
+    // Save the sort format in local storage
+    localStorage.setItem('sort', 'title');
+    this.notes.next(notes);
+  }
+
+  // Sort the notes array by lastModified timestamp
+  sortNotesByLastModified(): void {
+    const notes = this.notes.getValue();
+    notes.sort((a, b) => {
+      return b.lastModified.seconds - a.lastModified.seconds;
+    });
+    // Save the sort format in local storage
+    localStorage.setItem('sort', 'lastModified');
+    this.notes.next(notes);
+  }
+
+  // Sort the notes array by tag
+  sortNotesByTag(): void {
+    const notes = this.notes.getValue();
+    notes.sort((a, b) => {
+      return a.tag.localeCompare(b.tag);
+    });
+    // Save the sort format in local storage
+    localStorage.setItem('sort', 'tag');
+    this.notes.next(notes);
+  }
+
+  // Sort the notes array by the sort format in local storage
+  sortNotesBySortType(sortType: string | null): void {
+    switch (sortType) {
+      case 'createdAt':
+        this.sortNotesByCreatedAt();
+        break;
+      case 'title':
+        this.sortNotesByTitle();
+        break;
+      case 'lastModified':
+        this.sortNotesByLastModified();
+        break;
+      case 'tag':
+        this.sortNotesByTag();
+        break;
+      default:
+        this.sortNotesByCreatedAt();
+        localStorage.setItem('sort', 'createdAt');
+        break;
+    }
+  }
+
   // Manual conversion to milliseconds
   convertToMillis(timestamp: Timestamp): string {
     return timestamp.seconds.toString() + timestamp.nanoseconds.toString().slice(0, 3);

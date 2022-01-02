@@ -77,7 +77,9 @@ export class NoteDialogComponent implements OnInit {
       // Update the existing note
       setDoc(docRef, data).then(() => {
         this.toaster.success('Note updated!', 'Success');
-        this.noteService.updateNote(this.currentNote);
+        this.noteService.updateNote(data);
+        // Sort the notes once database is updated
+        this.noteService.sortNotesBySortType(localStorage.getItem('sort'));
         this.dialogRef.close();
       }).catch((error) => {
         this.toaster.error(error.message, 'Error');
@@ -103,15 +105,9 @@ export class NoteDialogComponent implements OnInit {
       // Create the note and add it to firebase
       setDoc(docRef, data).then(() => {
         this.toaster.success('Note created!', 'Success');
-        this.noteService.appendNote({
-          title: this.currentNote.title,
-          description: this.currentNote.description,
-          content: this.currentNote.content,
-          tag: Tag.General,
-          favorite: false,
-          createdAt: timeNow,
-          lastModified: Timestamp.now(),
-        });
+        this.noteService.appendNote(data);
+        // Sort the notes once database is updated
+        this.noteService.sortNotesBySortType(localStorage.getItem('sort'));
         this.dialogRef.close();
       }).catch((error) => {
         this.toaster.error(error.message, 'Error');

@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     private toaster: ToastrService,
     private themeService: ThemeService,
     public dialog: MatDialog,
-    private noteService: NoteService,
+    public noteService: NoteService,
   ) {
     this.notes = this.noteService.getNotes();
   }
@@ -52,6 +52,9 @@ export class DashboardComponent implements OnInit {
         // Append to the notes in the service
         this.noteService.appendNote(doc.data() as Note);
       });
+      // Get the sorting method from local storage
+      const sortMethod: string | null = localStorage.getItem('sort');
+      this.noteService.sortNotesBySortType(sortMethod);
     }).catch((error) => {
       this.toaster.error('Failed to retrieve notes', 'Error');
       console.log(error)
