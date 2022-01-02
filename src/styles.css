@@ -26,3 +26,8 @@ body {
 .mat-dialog-container {
   @apply cursor-default;
 }
+
+/* .mat-chi {
+  @apply bg-transparent;
+  @apply text-black;
+} */

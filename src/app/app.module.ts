@@ -10,6 +10,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -43,6 +45,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MatDialogModule,
     MatInputModule,
     FormsModule,
+    MatChipsModule,
+    MatTooltipModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-bottom-left',

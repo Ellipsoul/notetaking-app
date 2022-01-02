@@ -5,15 +5,47 @@
     mat-raised-button
     color="newnote"
     (click)="openDialog()"
-    ngClass="drop-shadow-lg"
+    ngClass="drop-shadow-lg hidden sm:flex"
   >
     New Note
   </button>
 
+  <button
+    mat-mini-fab
+    color="newnote"
+    (click)="openDialog()"
+    ngClass="drop-shadow-lg sm:hidden"
+  >
+    <mat-icon ngClass="absolute top-2 left-2">add</mat-icon>
+  </button>
+
   <div ngClass="grow"></div>
 
+  <!-- Chips showing tags for a large screen -->
+  <mat-chip-list
+    aria-label="Tag legend"
+    ngClass="hidden sm:flex flex-row p-0 items-center"
+  >
+    <mat-chip color="general">General</mat-chip>
+    <mat-chip color="personal">Personal</mat-chip>
+    <mat-chip color="work">Work</mat-chip>
+    <mat-chip color="leisure">Leisure</mat-chip>
+  </mat-chip-list>
+
+  <!-- Chips with abbreviated tags for a small screen -->
+  <mat-chip-list
+    aria-label="Tag legend"
+    ngClass="sm:hidden flex-row p-0 items-center"
+  >
+    <mat-chip color="general">G</mat-chip>
+    <mat-chip color="personal">P</mat-chip>
+    <mat-chip color="work">W</mat-chip>
+    <mat-chip color="leisure">L</mat-chip>
+  </mat-chip-list>
+
+  <!-- Sorting button and menu -->
   <div ngClass="flex flex-row p-0 items-center">
-    <div>Sort</div>
+    <div ngClass="hidden sm:block">Sort</div>
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"

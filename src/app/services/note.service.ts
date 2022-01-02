@@ -6,7 +6,7 @@ export enum Tag {
   General = 'General',
   Personal = 'Personal',
   Work = 'Work',
-  Other = 'Other',
+  Leisure = 'Leisure',
 }
 
 export interface Note {
