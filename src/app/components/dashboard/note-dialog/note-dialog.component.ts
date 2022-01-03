@@ -26,10 +26,10 @@ export class NoteDialogComponent implements OnInit {
     const tempTimestamp = Timestamp.now();
     // Create a deep copy to prevent mutation of original note
     this.currentNote = data ? JSON.parse(JSON.stringify(data)) : {
-      title: '',
-      description: '',
-      content: '',
-      tag: '',
+      title: 'Placeholder Title',
+      description: 'Placeholder Description',
+      content: 'Placeholder Content',
+      tag: 'General',
       favorite: false,
       createdAt: tempTimestamp,
       lastModified: tempTimestamp,
@@ -69,7 +69,7 @@ export class NoteDialogComponent implements OnInit {
         title: this.currentNote.title,
         description: this.currentNote.description,
         content: this.currentNote.content,
-        tag: Tag.General,
+        tag: this.currentNote.tag,
         favorite: false,
         createdAt: this.currentNote.createdAt,
         lastModified: Timestamp.now(),
@@ -97,7 +97,7 @@ export class NoteDialogComponent implements OnInit {
         title: this.currentNote.title,
         description: this.currentNote.description,
         content: this.currentNote.content,
-        tag: Tag.General,
+        tag: this.currentNote.tag,
         favorite: false,
         createdAt: timeNow,
         lastModified: timeNow,
@@ -130,5 +130,9 @@ export class NoteDialogComponent implements OnInit {
       this.toaster.error(error.message, 'Error');
       console.log(error);
     });
+  }
+
+  updateTag(tag: string): void {
+    this.currentNote.tag = tag;
   }
 }

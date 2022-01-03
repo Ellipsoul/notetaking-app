@@ -41,6 +41,9 @@ module.exports = {
       height: {
         description: '72%',
       },
+      spacing: {
+        tiny: '0.125rem',
+      },
       gridTemplateColumns: {
         auto: 'repeat(auto-fill, 12rem)',
       },

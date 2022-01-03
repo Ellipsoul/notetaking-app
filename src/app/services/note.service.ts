@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Timestamp } from 'firebase/firestore';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 
 export enum Tag {
@@ -25,7 +26,7 @@ export interface Note {
 export class NoteService {
   private notes: BehaviorSubject<Note[]>;
 
-  constructor() {
+  constructor(private toaster: ToastrService) {
     this.notes = new BehaviorSubject<Note[]>([]);
   }
 
