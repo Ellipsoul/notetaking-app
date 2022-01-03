@@ -1,22 +1,36 @@
-<div ngClass="home-container">
-  <div ngClass="text-black dark:text-white">Hello</div>
-  <div ngClass="text-black dark:text-white">Hello</div>
+<div [ngClass]="['home-container', applyTheme()]">
+  <div
+    ngClass="text-5xl sm:text-7xl lg:text-10xl
+    font-cardtitle font-bold text-black dark:text-white text-center"
+  >
+    Welcome!
+  </div>
+
+  <div [ngClass]="['welcome-text', 'text-black dark:text-white']">
+    NanoNote is a very lightweight, easy-to-use notes app.
+  </div>
+
+  <div [ngClass]="['welcome-text', 'text-black dark:text-white']">
+    Sign in with Google below to get started right away!
+  </div>
 
   <button
     mat-raised-button
-    color="primary"
+    color="auth-button"
+    ngClass="h-24"
     *ngIf="(afAuth.authState | async) === null"
     (click)="signInWithGoogle()"
   >
-    Sign In with Google
+    <div ngClass="text-6xl p-2">Sign In with Google</div>
   </button>
 
   <button
     mat-raised-button
-    color="primary"
+    color="auth-button"
+    ngClass="h-24"
     *ngIf="afAuth.authState | async"
     (click)="signOut()"
   >
-    Sign Out
+    <div ngClass="text-6xl p-2">Sign Out</div>
   </button>
 </div>

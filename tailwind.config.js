@@ -31,6 +31,9 @@ module.exports = {
         '5xl': '3rem',
         '6xl': '3.5rem',
         '7xl': '4rem',
+        '8xl': '4.5rem',
+        '9xl': '5rem',
+        '10xl': '5.5rem',
       },
       flexGrow: {
         10: 10,
@@ -43,6 +46,7 @@ module.exports = {
       },
       spacing: {
         tiny: '0.125rem',
+        128: '32rem',
       },
       gridTemplateColumns: {
         auto: 'repeat(auto-fill, 12rem)',

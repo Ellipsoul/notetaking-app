@@ -4,17 +4,33 @@
 
 @layer components {
   :host {
-    @apply grow flex;
+    @apply grow flex flex-col w-full justify-between;
     @apply bg-stone-100 dark:bg-slate-700;
   }
 
   .home-container {
-    @apply flex flex-row flex-wrap justify-evenly;
-    @apply p-12 gap-y-8 gap-x-8;
+    @apply flex flex-col flex-wrap grow;
+    @apply justify-evenly w-full;
+    @apply p-4 sm:p-12 gap-y-3 mobile:gap-y-8 gap-x-8;
     @apply text-black dark:text-white;
   }
 
   .home-container > * {
-    @apply p-5 border border-green-300;
+    @apply w-full;
+  }
+
+  .welcome-text {
+    @apply text-3xl md:text-4xl leading-snug font-cardtitle font-semibold;
+    @apply text-justify lg:text-center;
+  }
+
+  .mat-icon {
+    @apply text-4xl;
+  }
+
+  .mat-raised-button.mat-auth-button {
+    @apply bg-zinc-700 dark:bg-zinc-200;
+    @apply text-white dark:text-black;
+    @apply hover:bg-zinc-900 hover:dark:bg-white;
   }
 }
