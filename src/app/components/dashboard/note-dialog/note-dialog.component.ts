@@ -26,10 +26,10 @@ export class NoteDialogComponent implements OnInit {
     const tempTimestamp = Timestamp.now();
     // Create a deep copy to prevent mutation of original note
     this.currentNote = data ? JSON.parse(JSON.stringify(data)) : {
-      title: 'Placeholder Title',
-      description: 'Placeholder Description',
-      content: 'Placeholder Content',
-      tag: 'General',
+      title: '',
+      description: '',
+      content: '',
+      tag: Tag.General,
       favorite: false,
       createdAt: tempTimestamp,
       lastModified: tempTimestamp,
