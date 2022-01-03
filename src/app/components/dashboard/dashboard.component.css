@@ -21,7 +21,7 @@
   .notes-container {
     /* A cool grid arrangement to line up the last row of items */
     @apply grid justify-between grid-cols-auto;
-    @apply px-8 py-0 gap-x-4 gap-y-4;
+    @apply px-8 py-0 gap-x-6 gap-y-6;
   }
 
   button {

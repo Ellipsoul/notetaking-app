@@ -83,10 +83,4 @@ export class DashboardComponent implements OnInit {
   applyTheme(): string {
     return this.themeService.getTheme();
   }
-
-  getTooltipText(): string {
-    return `Test
-    Test
-    Test`
-  }
 }

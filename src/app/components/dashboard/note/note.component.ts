@@ -25,4 +25,19 @@ export class NoteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  tagToColour(tag:string): string {
+    switch (tag) {
+      case Tag.General:
+        return 'bg-cyan-300 dark:bg-blue-700';
+      case Tag.Personal:
+        return 'bg-green-300 dark:bg-green-700';
+      case Tag.Work:
+        return 'bg-yellow-300 dark:bg-yellow-700';
+      case Tag.Leisure:
+        return 'bg-pink-300 dark:bg-pink-700';
+      default:
+        return 'bg-transparent';
+    }
+  }
+
 }

@@ -8,3 +8,10 @@
 >
   {{ note.description }}
 </div>
+<!-- Tag on top right -->
+<div
+  [ngClass]="[
+    'absolute top-0 right-0 w-5 h-5 rounded-md',
+    tagToColour(note.tag)
+  ]"
+></div>

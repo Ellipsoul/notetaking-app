@@ -72,12 +72,7 @@
   <!-- Action buttons for phones -->
   <div ngClass="flex mobile:hidden flex-row gap-x-4">
     <!-- Nothing needs to happen with the cancel button -->
-    <button
-      mat-icon-button
-      cdkFocusInitial
-      color="action"
-      (click)="upsertNote()"
-    >
+    <button mat-icon-button color="action" (click)="upsertNote()">
       <mat-icon>save</mat-icon>
     </button>
     <button mat-icon-button mat-dialog-close color="basic">
