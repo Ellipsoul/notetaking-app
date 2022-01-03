@@ -11,6 +11,7 @@ import { ThemeService } from './services/theme.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  title: string = 'NanoNote';
   public theme: string;
 
   constructor(
