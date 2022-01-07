@@ -21,27 +21,49 @@
 
   <div ngClass="grow"></div>
 
-  <!-- Chips showing tags for a large screen -->
-  <mat-chip-list
-    aria-label="Tag legend"
-    ngClass="hidden sm:flex flex-row p-0 items-center"
-  >
-    <mat-chip color="general">General</mat-chip>
-    <mat-chip color="personal">Personal</mat-chip>
-    <mat-chip color="work">Work</mat-chip>
-    <mat-chip color="leisure">Leisure</mat-chip>
-  </mat-chip-list>
+  <!-- Legend for tags on large screens -->
+  <div ngClass="hidden sm:flex flex-row p-0 items-center gap-x-3 font-semibold">
+    <span
+      ngClass="bg-cyan-300 dark:bg-blue-700 px-2 py-1 rounded-xl cursor-default"
+    >
+      General
+    </span>
+    <span
+      ngClass="bg-green-300 dark:bg-green-700 px-2 py-1 rounded-xl cursor-default"
+    >
+      Personal
+    </span>
+    <span
+      ngClass="bg-yellow-300 dark:bg-yellow-700 px-2 py-1 rounded-xl cursor-default"
+    >
+      Work
+    </span>
+    <span
+      ngClass="bg-pink-300 dark:bg-pink-700 px-2 py-1 rounded-xl cursor-default"
+    >
+      Leisure
+    </span>
+  </div>
 
-  <!-- Chips with abbreviated tags for a small screen -->
-  <mat-chip-list
-    aria-label="Tag legend"
-    ngClass="sm:hidden flex-row p-0 items-center"
-  >
-    <mat-chip color="general">G</mat-chip>
-    <mat-chip color="personal">P</mat-chip>
-    <mat-chip color="work">W</mat-chip>
-    <mat-chip color="leisure">L</mat-chip>
-  </mat-chip-list>
+  <!-- Legend for tags on smaller screens -->
+  <div ngClass="sm:hidden flex flex-row p-0 items-center gap-x-2 font-semibold">
+    <span
+      ngClass="bg-cyan-300 dark:bg-blue-700 px-2 py-1 rounded-xl cursor-default"
+      >G</span
+    >
+    <span
+      ngClass="bg-green-300 dark:bg-green-700 px-2 py-1 rounded-xl cursor-default"
+      >P</span
+    >
+    <span
+      ngClass="bg-yellow-300 dark:bg-yellow-700 px-2 py-1 rounded-xl cursor-default"
+      >W</span
+    >
+    <span
+      ngClass="bg-pink-300 dark:bg-pink-700 px-2 py-1 rounded-xl cursor-default"
+      >L</span
+    >
+  </div>
 
   <!-- Sorting button and menu -->
   <div ngClass="flex flex-row p-0 items-center">

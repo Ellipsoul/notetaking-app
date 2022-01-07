@@ -10,7 +10,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { FormsModule } from '@angular/forms';
 
@@ -45,7 +44,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MatDialogModule,
     MatInputModule,
     FormsModule,
-    MatChipsModule,
     MatBadgeModule,
     ToastrModule.forRoot({
       timeOut: 2000,

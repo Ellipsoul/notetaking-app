@@ -36,15 +36,6 @@ export class HomepageComponent implements OnInit {
         });
   }
 
-  signOut(): void {
-    this.afAuth.signOut().then(() => {
-      this.toaster.info('See you next time', 'Signed Out!');
-    }).catch((error) => {
-      this.toaster.error('Failed to sign out!', 'Error');
-      console.log(error);
-    });
-  }
-
   // Track the theme for homepage internal components
   applyTheme(): string {
     return this.themeService.getTheme();

@@ -33,24 +33,4 @@
     @apply text-white dark:text-black;
     @apply hover:bg-zinc-900 hover:dark:bg-white;
   }
-
-  .mat-chip.mat-general {
-    @apply bg-cyan-300 dark:bg-blue-700;
-  }
-
-  .mat-chip.mat-personal {
-    @apply bg-green-300 dark:bg-green-700;
-  }
-
-  .mat-chip.mat-work {
-    @apply bg-yellow-300 dark:bg-yellow-700;
-  }
-
-  .mat-chip.mat-leisure {
-    @apply bg-pink-300 dark:bg-pink-700;
-  }
-
-  .mat-chip {
-    @apply text-black dark:text-white;
-  }
 }

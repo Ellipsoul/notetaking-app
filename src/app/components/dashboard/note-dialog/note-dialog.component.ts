@@ -118,6 +118,8 @@ export class NoteDialogComponent implements OnInit {
 
   // Delete a note from Firebase
   deleteNote(): void {
+    if (!confirm('Are you sure you want to delete this note?')) return;
+
     const createdAtString: string = this.noteService.convertToMillis(this.currentNote.createdAt);
     const docRef: DocumentReference<DocumentData> =
       doc(this.firestore, 'users', this.user.uid, 'notes', createdAtString);

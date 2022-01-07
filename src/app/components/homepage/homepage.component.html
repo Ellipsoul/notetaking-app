@@ -1,43 +1,97 @@
 <div [ngClass]="['home-container', applyTheme()]">
+  <!-- Logo with description -->
   <div
-    ngClass="text-5xl sm:text-7xl lg:text-10xl
-    font-cardtitle font-bold text-black dark:text-white text-center"
+    ngClass="
+      flex flex-row flex-wrap justify-center items-center
+      gap-x-10 px-4 w-full py-4
+      bg-slate-200 dark:bg-slate-800"
   >
-    Welcome!
-  </div>
-
-  <div [ngClass]="['welcome-text', 'text-black dark:text-white']">
-    NanoNote is a very lightweight, easy-to-use notes application.
-  </div>
-
-  <div [ngClass]="['welcome-text', 'text-black dark:text-white']">
-    <ng-container *ngIf="(afAuth.authState | async) === null">
-      Sign in with Google below to get started right away!
-    </ng-container>
-    <ng-container *ngIf="afAuth.authState | async">
-      Click the button below to sign out. See you again soon!
-    </ng-container>
-  </div>
-
-  <button
-    mat-raised-button
-    color="auth-button"
-    ngClass="h-24"
-    *ngIf="(afAuth.authState | async) === null"
-    (click)="signInWithGoogle()"
-  >
-    <div ngClass="text-2xl md:text-4xl lg:text-6xl p-2">
-      Sign In with Google
+    <div ngClass="p-2 text-black: dark:text-white">
+      <img src="../../../assets/logo.png" ngClass="w-36" />
     </div>
-  </button>
-
-  <button
-    mat-raised-button
-    color="auth-button"
-    ngClass="h-24"
-    *ngIf="afAuth.authState | async"
-    (click)="signOut()"
+    <div
+      ngClass="p-2 w-96 md:w-144 lg:w-160 text-black dark:text-white
+      font-landing font-semibold text-xl sm:text-3xl text-center sm:text-left"
+    >
+      NanoNote is a simple, responsive and lightweight sticky notes application
+      built with Angular and Firebase
+    </div>
+  </div>
+  <!-- Google Sign In or redirect to dashboard -->
+  <div
+    ngClass="
+      flex flex-row flex-wrap justify-center items-center
+      gap-x-10 gap-y-1 px-4 py-4 bg-slate-200 dark:bg-slate-800"
   >
-    <div ngClass="text-2xl md:text-4xl lg:text-6xl p-2">Sign Out</div>
-  </button>
+    <div
+      ngClass="p-2 w-64 md:w-96 lg:w-128 text-black dark:text-white
+      font-landing text-xl sm:text-2xl text-left"
+    >
+      <ng-container *ngIf="(afAuth.authState | async) === null">
+        To get started, just sign in with your Google account
+      </ng-container>
+      <ng-container *ngIf="afAuth.authState | async">
+        You are already signed in. Head over to the Dashboard to view your
+        notes!
+      </ng-container>
+    </div>
+    <button
+      mat-raised-button
+      color="auth-button"
+      ngClass="h-24 w-84 px-8"
+      *ngIf="(afAuth.authState | async) === null"
+      (click)="signInWithGoogle()"
+    >
+      <div ngClass="flex flex-row items-center">
+        <img src="../../../assets/google-icon.png" ngClass="w-16" />
+        <div ngClass="text-4xl p-6">Sign In</div>
+      </div>
+    </button>
+
+    <button
+      mat-raised-button
+      color="auth-button"
+      ngClass="h-20 flex items-center"
+      *ngIf="afAuth.authState | async"
+      routerLink="/dashboard"
+    >
+      <div ngClass="text-4xl p-6">Dashboard</div>
+    </button>
+  </div>
+  <!-- Self advertising -->
+  <div
+    ngClass="
+      flex flex-row flex-wrap justify-center items-center
+      gap-x-10 gap-y-1 px-4 py-4 bg-slate-200 dark:bg-slate-800"
+  >
+    <div
+      ngClass="flex flex-row flex-wrap justify-center items-center p-6 gap-x-7"
+    >
+      <div
+        ngClass="text-4xl font-serif text-black dark:text-white font-semibold text-center"
+      >
+        Made by
+      </div>
+      <div
+        ngClass="text-4xl font-serif text-black dark:text-white font-semibold text-center"
+      >
+        Aron Teh
+      </div>
+    </div>
+    <div ngClass="w-auto h-full flex flex-row gap-x-8">
+      <a href="https://www.linkedin.com/in/aronteh/" target="_blank"
+        ><img src="../../../assets/linkedin-icon.png" ngClass="w-18"
+      /></a>
+      <a href="https://github.com/ellipsoul" target="_blank">
+        <img
+          [src]="
+            applyTheme() === 'dark'
+              ? '../../../assets/github-light.png'
+              : '../../../assets/github-dark.png'
+          "
+          ngClass="w-16"
+        />
+      </a>
+    </div>
+  </div>
 </div>

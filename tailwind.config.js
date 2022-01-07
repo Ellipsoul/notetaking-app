@@ -14,6 +14,7 @@ module.exports = {
       serif: ['"Fira Code"', 'serif'],
       cardtitle: ['Optima', 'serif'],
       carddescription: ['Verdana', 'sans-serif'],
+      landing: ['Garamond', 'sans-serif'],
     },
     extend: {
       screens: {
@@ -46,7 +47,10 @@ module.exports = {
       },
       spacing: {
         tiny: '0.125rem',
+        18: '4.5rem',
         128: '32rem',
+        144: '36rem',
+        160: '40rem',
       },
       gridTemplateColumns: {
         auto: 'repeat(auto-fill, 12rem)',
