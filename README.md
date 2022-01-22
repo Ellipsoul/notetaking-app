@@ -10,9 +10,11 @@ I realised that after starting a full time position, it becomes quite hard to me
 
 Yes, I did improve :)
 
+View more of my projects on my personal [website](https://aronteh.com/).
+
 ### Technologies Used
 
-- Angular 13
-- Material
-- Tailwind 3
-- Firebase (Firestore, Auth, Hosting)
+- [Angular 13](https://angular.io/)
+- [Material](https://material.angular.io/)
+- [TailwindCSS 3](https://tailwindcss.com/)
+- [Firebase](https://firebase.google.com/) (Firestore, Auth, Hosting)
